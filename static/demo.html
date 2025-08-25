@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Beacon Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .demo-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .log { background: #f8f9fa; border: 1px solid #dee2e6; padding: 10px; border-radius: 5px; margin: 10px 0; max-height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <h1>Analytics Beacon Demo</h1>
+    <p>This page demonstrates how to use <code>navigator.sendBeacon</code> for analytics tracking.</p>
+
+    <div class="demo-section">
+        <h2>1. Basic Beacon Tracking</h2>
+        <button onclick="trackBasicEvent()">Track Basic Event</button>
+        <button onclick="trackPageView()">Track Page View</button>
+        <button onclick="trackProductView()">Track Product View</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>2. Manual Beacon API</h2>
+        <button onclick="sendManualBeacon()">Send Manual Beacon</button>
+        <button onclick="sendSimpleBeacon()">Send Simple Beacon</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>3. Page Unload Testing</h2>
+        <button onclick="window.close()">Close Tab</button>
+        <button onclick="window.location.href='https://example.com'">Navigate Away</button>
+    </div>
+
+    <div class="demo-section">
+        <h2>4. Status & Logs</h2>
+        <div class="log" id="log"></div>
+        <button onclick="clearLog()">Clear Log</button>
+    </div>
+
+    <script src="analytics.js"></script>
+    <script>
+        // Initialize analytics
+        window.analytics = new AnalyticsBeacon({
+            baseUrl: 'http://localhost:8000/api/v1/beacon',
+            debug: true
+        });
+
+        // Override log function
+        const originalLog = window.analytics.log;
+        window.analytics.log = function(...args) {
+            originalLog.apply(this, args);
+            addToLog(args.join(' '));
+        };
+
+        function addToLog(message) {
+            const log = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            log.innerHTML += `[${timestamp}] ${message}<br>`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function trackBasicEvent() {
+            window.analytics.track('button_click', { button_id: 'basic_event' });
+        }
+
+        function trackPageView() {
+            window.analytics.trackPageView();
+        }
+
+        function trackProductView() {
+            window.analytics.track('product_view', {
+                product_id: 123,
+                product_name: 'Demo Product'
+            });
+        }
+
+        function sendManualBeacon() {
+            const data = {
+                event_type: 'manual',
+                event_name: 'manual_beacon_test',
+                page_url: window.location.href
+            };
+
+            if (navigator.sendBeacon) {
+                const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+                const success = navigator.sendBeacon('http://localhost:8000/api/v1/beacon/beacon', blob);
+                addToLog(success ? 'Manual beacon sent' : 'Manual beacon failed');
+            }
+        }
+
+        function sendSimpleBeacon() {
+            const url = new URL('http://localhost:8000/api/v1/beacon/simple');
+            url.searchParams.set('type', 'simple');
+            url.searchParams.set('name', 'simple_test');
+            url.searchParams.set('url', window.location.href);
+
+            const success = navigator.sendBeacon(url.toString());
+            addToLog(success ? 'Simple beacon sent' : 'Simple beacon failed');
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        addToLog('Page loaded, analytics initialized');
+    </script>
+</body>
+</html>
