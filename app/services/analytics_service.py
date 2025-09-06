@@ -25,7 +25,7 @@ class AnalyticsService:
         enriched_data = event_data.dict()
         
         # Add timestamp
-        enriched_data['timestamp'] = datetime.utcnow().isoformat()
+        enriched_data['timestamp'] = datetime.utcnow()
         
         # Add request information if provided
         if request_info:

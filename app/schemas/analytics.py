@@ -6,7 +6,7 @@ from datetime import datetime
 class AnalyticsEventBase(BaseModel):
     event_type: str = Field(..., description="Event type (page_view, click, purchase, etc.)")
     event_name: str = Field(..., description="Specific event name")
-    user_id: Optional[int] = Field(None, description="User ID if authenticated")
+    user_id: Optional[str] = Field(None, description="User ID if authenticated")
     session_id: Optional[str] = Field(None, description="Session identifier")
     page_url: Optional[str] = Field(None, description="Current page URL")
     referrer: Optional[str] = Field(None, description="Referrer URL")
@@ -34,7 +34,7 @@ class AnalyticsEventBatch(BaseModel):
 
 class AnalyticsQuery(BaseModel):
     event_type: Optional[str] = Field(None, description="Filter by event type")
-    user_id: Optional[int] = Field(None, description="Filter by user ID")
+    user_id: Optional[str] = Field(None, description="Filter by user ID")
     start_date: Optional[datetime] = Field(None, description="Start date for filtering")
     end_date: Optional[datetime] = Field(None, description="End date for filtering")
     limit: int = Field(100, description="Number of events to return")

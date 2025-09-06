@@ -9,7 +9,7 @@ class AnalyticsEvent(Base):
     id = Column(Integer, primary_key=True, index=True)
     event_type = Column(String, nullable=False, index=True)
     event_name = Column(String, nullable=False, index=True)
-    user_id = Column(Integer, nullable=True, index=True)
+    user_id = Column(String, nullable=True, index=True)
     session_id = Column(String, nullable=True, index=True)
     page_url = Column(String, nullable=True)
     referrer = Column(String, nullable=True)

@@ -34,14 +34,32 @@ class RabbitMQManager:
             self.channel = self.connection.channel()
             
             # Declare the analytics queue
-            self.channel.queue_declare(
-                queue=settings.ANALYTICS_QUEUE_NAME,
-                durable=True,
-                arguments={
-                    'x-message-ttl': 86400000,  # 24 hours in milliseconds
-                    'x-max-length': 10000  # Max 10k messages
-                }
-            )
+            try:
+                self.channel.queue_declare(
+                    queue=settings.ANALYTICS_QUEUE_NAME,
+                    durable=True,
+                    arguments={
+                        'x-message-ttl': 86400000,  # 24 hours in milliseconds
+                        'x-max-length': 10000  # Max 10k messages
+                    }
+                )
+            except Exception as queue_error:
+                # If queue exists with different parameters, delete and recreate
+                logger.warning(f"Queue declaration failed, attempting to delete and recreate: {queue_error}")
+                try:
+                    self.channel.queue_delete(queue=settings.ANALYTICS_QUEUE_NAME)
+                    self.channel.queue_declare(
+                        queue=settings.ANALYTICS_QUEUE_NAME,
+                        durable=True,
+                        arguments={
+                            'x-message-ttl': 86400000,  # 24 hours in milliseconds
+                            'x-max-length': 10000  # Max 10k messages
+                        }
+                    )
+                except Exception as recreate_error:
+                    logger.error(f"Failed to recreate queue: {recreate_error}")
+                    # Fallback: declare without arguments
+                    self.channel.queue_declare(queue=settings.ANALYTICS_QUEUE_NAME, durable=True)
             
             logger.info("Successfully connected to RabbitMQ")
             

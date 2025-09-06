@@ -25,8 +25,8 @@ class Order(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     # Relationships
-    user = relationship("User", back_populates="orders")
-    items = relationship("OrderItem", back_populates="order")
+    user = relationship("User", back_populates="orders", lazy="select")
+    items = relationship("OrderItem", back_populates="order", lazy="dynamic")
 
 
 class OrderItem(Base):
@@ -40,5 +40,5 @@ class OrderItem(Base):
     total_price = Column(Float, nullable=False)
 
     # Relationships
-    order = relationship("Order", back_populates="items")
-    product = relationship("Product", back_populates="order_items")
+    order = relationship("Order", back_populates="items", lazy="select")
+    product = relationship("Product", back_populates="order_items", lazy="select")

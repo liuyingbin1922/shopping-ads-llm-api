@@ -1,0 +1,46 @@
+2025-09-05 16:33:44,882 - __main__ - INFO - Starting Analytics Consumer...
+2025-09-05 16:33:44,882 - __main__ - INFO - RabbitMQ Host: localhost:5672
+2025-09-05 16:33:44,882 - __main__ - INFO - Queue Name: analytics_events
+2025-09-05 16:33:44,882 - __main__ - ERROR - Failed to connect to RabbitMQ. Please ensure RabbitMQ is running.
+2025-09-05 16:33:44,882 - app.services.analytics_consumer - INFO - Analytics consumer stopped
+2025-09-05 16:33:44,882 - __main__ - INFO - Analytics Consumer stopped.
+2025-09-05 16:36:03,503 - __main__ - INFO - Starting Analytics Consumer...
+2025-09-05 16:36:03,503 - __main__ - INFO - RabbitMQ Host: localhost:5672
+2025-09-05 16:36:03,503 - __main__ - INFO - Queue Name: analytics_events
+2025-09-05 16:36:03,504 - app.services.analytics_consumer - INFO - Starting analytics consumer...
+2025-09-05 16:36:03,504 - app.services.analytics_consumer - INFO - Waiting for messages on queue: analytics_events
+2025-09-05 16:36:14,106 - __main__ - INFO - Received signal 2, shutting down...
+2025-09-05 16:36:14,110 - pika.adapters.blocking_connection - INFO - Closing connection (200): Normal shutdown
+2025-09-05 16:36:14,110 - pika.channel - INFO - Closing channel (200): 'Normal shutdown' on <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x105007c20> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-09-05 16:36:14,112 - pika.channel - INFO - Received <Channel.CloseOk> on <Channel number=1 CLOSING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x105007c20> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-09-05 16:36:14,112 - pika.connection - INFO - Closing connection (200): 'Normal shutdown'
+2025-09-05 16:36:14,113 - pika.adapters.utils.io_services_utils - INFO - Aborting transport connection: state=1; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64334, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:36:14,114 - pika.adapters.utils.io_services_utils - INFO - _AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64334, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:36:14,114 - pika.adapters.utils.io_services_utils - INFO - Deactivating transport: state=1; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64334, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:36:14,114 - pika.connection - INFO - AMQP stack terminated, failed to connect, or aborted: opened=True, error-arg=None; pending-error=ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-09-05 16:36:14,115 - pika.connection - INFO - Stack terminated due to ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-09-05 16:36:14,115 - pika.adapters.utils.io_services_utils - INFO - Closing transport socket and unlinking: state=3; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64334, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:36:14,116 - pika.adapters.blocking_connection - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
+2025-09-05 16:36:14,116 - app.services.analytics_consumer - INFO - Analytics consumer stopped
+2025-09-05 16:36:14,116 - app.services.analytics_consumer - INFO - Analytics consumer stopped
+2025-09-05 16:36:14,116 - __main__ - INFO - Analytics Consumer stopped.
+2025-09-05 16:36:55,213 - __main__ - INFO - Starting Analytics Consumer...
+2025-09-05 16:36:55,213 - __main__ - INFO - RabbitMQ Host: localhost:5672
+2025-09-05 16:36:55,213 - __main__ - INFO - Queue Name: analytics_events
+2025-09-05 16:36:55,214 - app.services.analytics_consumer - INFO - Starting analytics consumer...
+2025-09-05 16:36:55,214 - app.services.analytics_consumer - INFO - Waiting for messages on queue: analytics_events
+2025-09-05 16:41:12,741 - __main__ - INFO - Received signal 2, shutting down...
+2025-09-05 16:41:12,746 - pika.adapters.blocking_connection - INFO - Closing connection (200): Normal shutdown
+2025-09-05 16:41:12,746 - pika.channel - INFO - Closing channel (200): 'Normal shutdown' on <Channel number=1 OPEN conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1041ab950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-09-05 16:41:12,748 - pika.channel - INFO - Received <Channel.CloseOk> on <Channel number=1 CLOSING conn=<SelectConnection OPEN transport=<pika.adapters.utils.io_services_utils._AsyncPlaintextTransport object at 0x1041ab950> params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>>
+2025-09-05 16:41:12,748 - pika.connection - INFO - Closing connection (200): 'Normal shutdown'
+2025-09-05 16:41:12,749 - pika.adapters.utils.io_services_utils - INFO - Aborting transport connection: state=1; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64577, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:41:12,749 - pika.adapters.utils.io_services_utils - INFO - _AsyncTransportBase._initate_abort(): Initiating abrupt asynchronous transport shutdown: state=1; error=None; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64577, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:41:12,749 - pika.adapters.utils.io_services_utils - INFO - Deactivating transport: state=1; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64577, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:41:12,750 - pika.connection - INFO - AMQP stack terminated, failed to connect, or aborted: opened=True, error-arg=None; pending-error=ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-09-05 16:41:12,750 - pika.connection - INFO - Stack terminated due to ConnectionClosedByClient: (200) 'Normal shutdown'
+2025-09-05 16:41:12,750 - pika.adapters.utils.io_services_utils - INFO - Closing transport socket and unlinking: state=3; <socket.socket fd=8, family=30, type=1, proto=6, laddr=('::1', 64577, 0, 0), raddr=('::1', 5672, 0, 0)>
+2025-09-05 16:41:12,750 - pika.adapters.blocking_connection - INFO - User-initiated close: result=BlockingConnection__OnClosedArgs(connection=<SelectConnection CLOSED transport=None params=<ConnectionParameters host=localhost port=5672 virtual_host=/ ssl=False>>, error=ConnectionClosedByClient: (200) 'Normal shutdown')
+2025-09-05 16:41:12,751 - app.services.analytics_consumer - INFO - Analytics consumer stopped
+2025-09-05 16:41:12,751 - app.services.analytics_consumer - INFO - Analytics consumer stopped
+2025-09-05 16:41:12,751 - __main__ - INFO - Analytics Consumer stopped.
